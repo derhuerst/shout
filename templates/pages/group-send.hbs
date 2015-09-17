@@ -1,0 +1,14 @@
+{{#if success}}
+
+<h2>message sent</h2>
+
+<p>Your message has been sent to <code>{{group.name}}</code>.</p>
+
+{{else}}
+
+<form action="/{{group.name}}/{{group.key}}/send" method="POST">
+	<input name="body" type="text" value="" placeholder="a short and helpful message">
+	<input type="submit" value="send">
+</form>
+
+{{/if}}
