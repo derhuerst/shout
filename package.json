@@ -1,0 +1,33 @@
+{
+	"name": "shout",
+	"description": "Let people send push notifications to a group of people.",
+	"url": "shout.wtf",
+	"license": "MIT",
+	"author": {
+		"name": "Jannis R",
+		"email": "mail@jannisr.de",
+		"url": "http://jannisr.de"
+	},
+	"homepage": "https://github.com/derhuerst/shout",
+	"repository": "git://github.com/derhuerst/shout.git",
+	"bugs": "https://github.com/derhuerst/shout/issues",
+	"version": "0.1.0",
+	"main": "./src/index.js",
+	"keywords": [
+		"service",
+		"push",
+		"notification",
+		"realtime",
+		"groups",
+		"subscribe",
+		"coffeescript",
+		"javascript"
+	],
+	"dependencies": {
+	},
+	"directories": {
+		"src":		"./src"
+	},
+	"scripts": {
+	}
+}
