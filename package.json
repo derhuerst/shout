@@ -24,6 +24,15 @@
 		"javascript"
 	],
 	"dependencies": {
+		"hapi":						"^10.0.0",
+		"vision":					"^3.0.0",
+		"inert":					"^3.0.1",
+		"handlebars":				"^4.0.2",
+		"async":					"^1.4.2",
+		"mongoose":					"^4.1.7",
+		"uuid":						"^2.0.1",
+		"mongoose-relationship":	"^0.1.4",
+		"moment":					"^2.10.6"
 	},
 	"directories": {
 		"src":		"./src"
