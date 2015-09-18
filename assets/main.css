@@ -1,0 +1,79 @@
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 120%;
+	font-weight: normal;
+	background-color: #19b292;
+	color: #333;
+}
+
+.hidden{
+	display: none;
+}
+
+
+
+h1, h2, h3 {
+	color: white;
+}
+h1{
+	font-size: 200%;
+	margin: .5em 0;
+}
+h2{
+	font-size: 150%;
+	margin: .66em 0;
+}
+h3{
+	font-size: 120%;
+	margin: .83em 0;
+}
+
+p{
+	margin: 1em 0;
+}
+
+
+
+#messages {
+	padding: 0;
+	list-style: none;
+}
+
+#messages .message {
+	display: block;
+	padding: .5em;
+	background-color: white;
+}
+
+
+
+main {
+	margin: 0 auto;
+	max-width: 25em;
+}
+
+footer {
+	margin: 5em auto 1em auto;
+	max-width: 25em;
+	text-align: center;
+}
+
+#logo {
+	width: 3em;
+}
+
+#logo path {
+	fill: #333;
+}

@@ -1,5 +1,6 @@
 hapi =			require 'hapi'
 vision =		require 'vision'
+inert =			require 'inert'
 handlebars =	require 'handlebars'
 path =			require 'path'
 async =			require 'async'
@@ -17,6 +18,14 @@ module.exports =
 
 	routes: [
 		{
+			path:		'/assets/{path*}'
+			method:		'GET'
+			handler:
+				directory:
+					path: 'assets'
+					listing: false
+					index: true
+		}, {
 			path:		'/'
 			method:		'GET'
 			handler:	require './home.coffee'
@@ -57,10 +66,13 @@ module.exports =
 		@server = server = new hapi.Server()
 		server.connection
 			# tls:
-			# 	cert:		cert
-			# 	key:		key
-			port:			port
-		server.register vision, (err) ->
+			# 	cert:			cert
+			# 	key:			key
+			port:				port
+			routes:
+				files:
+					relativeTo:	path.join __dirname, '..'
+		server.register [inert, vision], (err) ->
 			if err then throw err
 			server.views
 				engines:
