@@ -1,4 +1,5 @@
 Group =			require '../models/Group'
+Message =		require '../models/Message'
 
 
 
@@ -31,9 +32,19 @@ module.exports = (req, reply) ->
 			response.statusCode = 404
 			return
 
-		context.group = group
-		reply.view 'pages/group', context
+		Message.find
+			group:	group
+		.limit 30
+		.exec (err, messages) ->
+			if err then return onError context, reply, 'An internal error occured.', 500
+
+			context.messages = []
+			for message in messages
+				context.messages.push
+					body:	message.body
+					date:	message.date
+			context.group = group
+			reply.view 'pages/group', context
 
 	.catch (err) ->
-		console.log 'error', err
-		reply err
+		return onError context, reply, 'An internal error occured.', 500
