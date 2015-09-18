@@ -67,6 +67,7 @@ module.exports =
 					hbs:		handlebars
 				relativeTo:		path.join __dirname, '..'
 				path:			'./templates'
+				helpersPath:	'./templates/helpers'
 				layout:			'default'
 		server.bind this
 		server.route @routes
