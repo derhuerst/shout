@@ -1,6 +1,6 @@
 # shout
 
-*shout* is a service to let people send push notifications to subscribers.
+*shout* is a service to let people send push notifications to subscribers. [Read more about this.](https://gist.github.com/derhuerst/dabf05f56f358c348582)
 
 work in progress!
 
