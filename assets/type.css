@@ -1,0 +1,46 @@
+body {
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 115%;
+	font-weight: normal;
+	color: #ddd;
+	line-height: 1.25;
+}
+
+
+
+h1, h2, h3 {
+	color: #19b292;   /* mint green */
+	font-weight: 300;
+}
+h1 {
+	font-size: 200%;
+	margin: .5em 0 1em 0;
+}
+h2 {
+	font-size: 150%;
+	margin: .66em 0 1.25em 0;
+}
+h3 {
+	font-size: 120%;
+	margin: .83em 0 1.66em 0;
+}
+
+
+
+p {
+	margin: 1em 0;
+}
+
+a {
+	color: #19b292;   /* mint green */
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+code {
+	padding: .1em;
+	font-size: 120%;
+	background-color: #555;
+}

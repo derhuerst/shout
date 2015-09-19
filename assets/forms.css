@@ -1,0 +1,39 @@
+form {
+	margin: 1em 0;
+}
+
+input, a.button {
+	margin: 1em 0 0 0;
+	padding: .6em;
+	width: 100%;
+	color: #333;
+	background-color: #e0e0e0;
+	border-radius: .2em;
+	-webkit-appearance: none;
+	line-height: 1.25;
+	font-size: 95%;
+	border: none;
+}
+input:hover, input:focus {
+	background-color: #fff;
+}
+
+
+
+
+input[type="submit"], button, a.button {
+	cursor: pointer;
+	background-color: #19b292;
+	color: white;
+}
+a.button {
+	display: block;
+	text-align: center;
+}
+
+input[type="submit"]:hover, input[type="submit"]:active, button:hover, button:active, a.button:hover, a.button:active {
+	background-color: #29c2a2;
+}
+a.button:hover {
+	text-decoration: none;
+}

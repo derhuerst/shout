@@ -11,37 +11,30 @@ html {
 }
 
 body {
-	font-family: "Helvetica Neue", sans-serif;
-	font-size: 120%;
-	font-weight: normal;
-	background-color: #19b292;
-	color: #333;
+	margin: 3em 0;
+	background-color: #333;
 }
 
-.hidden{
+
+
+.hidden {
 	display: none;
 }
 
-
-
-h1, h2, h3 {
-	color: white;
-}
-h1{
-	font-size: 200%;
-	margin: .5em 0;
-}
-h2{
-	font-size: 150%;
-	margin: .66em 0;
-}
-h3{
-	font-size: 120%;
-	margin: .83em 0;
-}
-
-p{
+.box {
+	display: block;
 	margin: 1em 0;
+	background-color: #ddd;
+	color: #333;
+	border-radius: .2em;
+}
+
+.box p {
+	margin: 0;
+}
+
+.box a {
+	color: #193877;   /* dark blue */
 }
 
 
@@ -52,21 +45,27 @@ p{
 }
 
 #messages .message {
-	display: block;
-	padding: .5em;
-	background-color: white;
+	padding: .6em;
+}
+
+#messages .message time {
+	display: inline-block;
+	padding: 0 .5em;
+	float: right;
+	font-size: 90%;
+	color: #555;
 }
 
 
 
 main {
 	margin: 0 auto;
-	max-width: 25em;
+	max-width: 30em;
 }
 
 footer {
-	margin: 5em auto 1em auto;
-	max-width: 25em;
+	margin: 5em auto 0 auto;
+	max-width: 30em;
 	text-align: center;
 }
 
@@ -75,5 +74,5 @@ footer {
 }
 
 #logo path {
-	fill: #333;
+	fill: #19b292;
 }
