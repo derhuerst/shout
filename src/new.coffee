@@ -1,5 +1,8 @@
 uuid =			require 'uuid'
 
+tpl =			require '../templates/pages/new'
+mainTpl =		require '../templates/main'
+
 
 
 
@@ -10,7 +13,7 @@ onError = (context, reply, text, code) ->
 	context.notices.push
 		type:	'error'
 		text:	text
-	response = reply.view 'pages/new', context
+	response = reply mainTpl context, tpl context
 	response.statusCode = code
 
 
@@ -18,17 +21,17 @@ onError = (context, reply, text, code) ->
 module.exports = (req, reply) ->
 	context =
 		site:		@site
-		page:		{}
+		group:		{}
 		notices:	[]
 	redis = @redis
 
 	if not req.payload
-		reply.view 'pages/new', context
+		reply mainTpl context, tpl context
 		return
 
 	if not allowed.test req.payload.name
 		return onError context, reply, 'The group name is either too long or has special characters. Only <code>A-Z</code>, <code>a-z</code>, <code>0-9</code> and <code>-</code> are allowed.', 400
-	context.page.name = req.payload.name
+	context.group.name = req.payload.name
 
 	key = 'g:' + req.payload.name   # `g` for groups
 	redis.get key, (err, result) ->
@@ -48,4 +51,4 @@ module.exports = (req, reply) ->
 			if err then return onError context, reply, 'An internal error occured.', 500
 
 			context.success = true
-			reply.view 'pages/new', context
+			reply mainTpl context, tpl context

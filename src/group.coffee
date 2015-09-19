@@ -1,5 +1,8 @@
 async =			require 'async'
 
+tpl =			require '../templates/pages/group'
+errorTpl =		require '../templates/pages/error'
+mainTpl =		require '../templates/main'
 
 
 
@@ -8,7 +11,7 @@ onError = (context, reply, text, code) ->
 	context.notices.push
 		type:	'error'
 		text:	text
-	response = reply.view "pages/group", context
+	response = reply mainTpl context, tpl context
 	response.statusCode = code
 
 
@@ -16,7 +19,7 @@ onError = (context, reply, text, code) ->
 module.exports = (req, reply) ->
 	context =
 		site:		@site
-		page:
+		group:
 			name:	req.params.group
 		notices:	[]
 	redis = @redis
@@ -28,7 +31,7 @@ module.exports = (req, reply) ->
 		if not group
 			context.short ='not found'
 			context.message ="There is no group <code>#{req.params.group}</code>."
-			response = reply.view 'pages/error', context
+			response = reply mainTpl context, errorTpl context
 			response.statusCode = 404
 			return
 
@@ -55,4 +58,4 @@ module.exports = (req, reply) ->
 			), () ->
 				if context.messages.length is 0
 					context.messages = null
-				reply.view 'pages/group', context
+				reply mainTpl context, tpl context

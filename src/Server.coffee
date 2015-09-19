@@ -1,7 +1,5 @@
 hapi =			require 'hapi'
-vision =		require 'vision'
 inert =			require 'inert'
-handlebars =	require 'handlebars'
 path =			require 'path'
 async =			require 'async'
 redis =			require 'redis'
@@ -73,15 +71,8 @@ module.exports =
 			routes:
 				files:
 					relativeTo:	path.join __dirname, '..'
-		server.register [inert, vision], (err) ->
+		server.register inert, (err) ->
 			if err then throw err
-			server.views
-				engines:
-					hbs:		handlebars
-				relativeTo:		path.join __dirname, '..'
-				path:			'./templates'
-				helpersPath:	'./templates/helpers'
-				layout:			'default'
 		server.bind this
 		server.route @routes
 
