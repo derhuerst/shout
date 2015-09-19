@@ -1,4 +1,3 @@
-handlebars =	require 'handlebars'
 moment =		require 'moment'
 
 
@@ -6,7 +5,7 @@ moment =		require 'moment'
 
 
 
-moment.locale 'shout',
+moment.locale 'relative-time',
 	relativeTime:
 		future:	'in %s'
 		past:	'%s ago'
@@ -25,13 +24,7 @@ moment.locale 'en'   # todo: fix this. ugly fix because setting a locale locally
 
 
 
-module.exports = (options, context) ->
+module.exports = (date) ->
 	now = moment()
-	date = moment(options).locale 'shout'
-	return new handlebars.SafeString [
-		'<time date="'
-		date.toISOString()
-		'">'
-		date.from now
-		'</time>'
-	].join ''
+	date = moment(date).locale 'relative-time'
+	return '<time date="' + date.toISOString() + '">' + date.from now + '</time>'
