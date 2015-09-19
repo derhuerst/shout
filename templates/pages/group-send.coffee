@@ -2,7 +2,7 @@ module.exports = ($) ->
 	if $.success then return '
 <h2>message sent</h2>
 
-<p>Your message has been sent to <a href="/' + group.name + '"><code>' + group.name + '</code></a>.</p>'
+<p>Your message has been sent to <a href="/' + $.group.name + '"><code>' + $.group.name + '</code></a>.</p>'
 	else return '
 <h2><code>' + $.group.name + '</code></h2>
 

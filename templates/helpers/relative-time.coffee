@@ -27,4 +27,4 @@ moment.locale 'en'   # todo: fix this. ugly fix because setting a locale locally
 module.exports = (date) ->
 	now = moment()
 	date = moment(date).locale 'relative-time'
-	return '<time date="' + date.toISOString() + '">' + date.from now + '</time>'
+	return '<time date="' + date.toISOString() + '">' + date.from(now) + '</time>'

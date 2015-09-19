@@ -1,6 +1,12 @@
+relativeTime =		require '../helpers/relative-time'
+
+
+
+
+
 module.exports = ($) ->
 	out = '
-<h2><code>' + $.group.name + '</code></h2>'
+<h2><code>' + $.group?.name + '</code></h2>'
 	if $.messages
 		out += '
 <ul id="messages">'

@@ -11,7 +11,7 @@ module.exports = ($, content = '') ->
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>' + (if $.page.title then $.page.title + ' - ') + $.site.name + '</title>
+		<title>' + (if $.group?.name then $.group.name + ' - ' else '') + $.site?.name + '</title>
 		<meta name="description" content="' + $.site.description + '">
 		<meta name="keywords" content="' + $.site.keywords + '">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,7 +28,7 @@ module.exports = ($, content = '') ->
 				<div id="notices">'
 		for notice in $.notices
 			out += '
-					<p class="notice ' + notices.type + '">' + text + '</p>'
+					<p class="notice ' + notice.type + '">' + notice.text + '</p>'
 		out += '
 				</div>'
 	out += content
