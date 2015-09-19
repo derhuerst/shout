@@ -43,6 +43,8 @@ module.exports = (req, reply) ->
 				context.messages.push
 					body:	message.body
 					date:	message.date
+			if context.messages.length is 0
+				context.messages = null
 			context.group = group
 			reply.view 'pages/group', context
 
