@@ -33,7 +33,6 @@ module.exports = (req, reply) ->
 			key:	group.k
 			locked:	true
 
-		key = 'g:' + req.params.group   # `g` for groups
 		value = JSON.stringify group
 		redis.set key, value, (err) ->
 			if err
@@ -45,7 +44,3 @@ module.exports = (req, reply) ->
 				return
 
 			reply.view 'pages/group-lock', context
-
-	.catch (err) ->
-		console.log 'error', err
-		reply err
