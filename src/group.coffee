@@ -1,5 +1,4 @@
-Group =			require '../models/Group'
-Message =		require '../models/Message'
+async =			require 'async'
 
 
 
@@ -17,36 +16,43 @@ onError = (context, reply, text, code) ->
 module.exports = (req, reply) ->
 	context =
 		site:		@site
-		page:		{}
-		req:		req
+		page:
+			name:	req.params.group
 		notices:	[]
+	redis = @redis
 
-	Group.findOne
-		name:	req.params.group
-	.then (group) ->
+	key = 'g:' + req.params.group   # `g` for groups
+	redis.get key, (err, group) ->
+		if err then return onError context, reply, 'An internal error occured.', 500
+
 		if not group
-			context.error =
-				short:		'not found'
-				message:	"There is no group <code>#{req.params.group}</code>."
+			context.short ='not found'
+			context.message ="There is no group <code>#{req.params.group}</code>."
 			response = reply.view 'pages/error', context
 			response.statusCode = 404
 			return
 
-		Message.find
-			group:	group
-		.limit 30
-		.exec (err, messages) ->
+		group = JSON.parse group
+		context.group =
+			name:	req.params.group
+			key:	group.k
+			locked:	group.l
+
+		# todo: find a way to stream keys for performance
+		pattern = 'm:' + req.params.group + ':*'   # `m` for messages
+		redis.keys pattern, (err, keys) ->
 			if err then return onError context, reply, 'An internal error occured.', 500
 
 			context.messages = []
-			for message in messages
-				context.messages.push
-					body:	message.body
-					date:	message.date
-			if context.messages.length is 0
-				context.messages = null
-			context.group = group
-			reply.view 'pages/group', context
-
-	.catch (err) ->
-		return onError context, reply, 'An internal error occured.', 500
+			async.eachLimit keys, 50, ((key, cb) ->
+				# todo: use [redis transactions](http://redis.io/topics/transactions) or at least [redis pipelining](http://redis.io/topics/pipelining)
+				redis.get key, (err, message) ->
+					message = JSON.parse message
+					context.messages.push
+						date:	new Date message.d
+						body:	message.b
+					cb()
+			), () ->
+				if context.messages.length is 0
+					context.messages = null
+				reply.view 'pages/group', context

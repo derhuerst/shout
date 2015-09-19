@@ -4,7 +4,7 @@ inert =			require 'inert'
 handlebars =	require 'handlebars'
 path =			require 'path'
 async =			require 'async'
-mongoose =		require 'mongoose'
+redis =			require 'redis'
 
 site =			require '../package.json'
 
@@ -55,6 +55,7 @@ module.exports =
 	site:		site
 
 	server:		null
+	redis:		null
 
 
 
@@ -84,22 +85,16 @@ module.exports =
 		server.bind this
 		server.route @routes
 
+		@redis = redis.createClient()
+
 		return this
 
 
 
 	start: (cb = ()->) ->
-		@server.start (err) ->
-			if err then return cb err
-			mongoose.connect 'mongodb://localhost/shout', (err) ->
-				if err then return cb err
-				cb()
+		@server.start cb
 		return this
 
-	stop: (cb) ->
-		@server.stop (err) ->
-			if err then return cb err
-			mongoose.disconnect 'mongodb://localhost/shout', (err) ->
-				if err then return cb err
-				cb()
+	stop: (cb = ()->) ->
+		@server.stop cb
 		return this

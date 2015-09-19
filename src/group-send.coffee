@@ -1,5 +1,4 @@
-Group =			require '../models/Group'
-Message =		require '../models/Message'
+shortid =		require 'shortid'
 
 
 
@@ -8,13 +7,15 @@ Message =		require '../models/Message'
 module.exports = (req, reply) ->
 	context =
 		site:		@site
-		page:		{}
-		req:		req
+		group:
+			name:	req.params.group
 		notices:	[]
+	redis = @redis
 
-	Group.findOne
-		name:	req.params.group
-	.then (group) ->
+	key = 'g:' + req.params.group   # `g` for groups
+	redis.get key, (err, group) ->
+		if err then return onError context, reply, 'An internal error occured.', 500
+
 		if not group
 			context.error =
 				short:		'not found'
@@ -23,7 +24,8 @@ module.exports = (req, reply) ->
 			response.statusCode = 404
 			return
 
-		if group.key isnt req.params.key
+		group = JSON.parse group
+		if group.k isnt req.params.key
 			context.error =
 				short:		'wrong key'
 				message:	"The key is incorrect."
@@ -31,12 +33,16 @@ module.exports = (req, reply) ->
 			response.statusCode = 403
 			return
 
-		context.group = group
-		message = new Message
-		 	body:	req.payload.body
-		 	date:	new Date()
-		 	group:	group
-		message.save (err) ->
+		context.group =
+			name:	req.params.group
+			key:	group.k
+			locked:	group.l
+
+		key = 'm:' + req.params.group + ':' + shortid.generate()   # `m` for messages
+		value = JSON.stringify
+		 	d:	new Date().valueOf()
+		 	b:	req.payload.body
+		redis.set key, value, (err) ->
 			if err
 				context.error =
 					short:		'internal error'
@@ -47,7 +53,3 @@ module.exports = (req, reply) ->
 
 			context.success = true
 			reply.view 'pages/group-send', context
-
-	.catch (err) ->
-		console.log 'error', err
-		reply err
