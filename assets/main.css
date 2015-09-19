@@ -11,7 +11,7 @@ html {
 }
 
 body {
-	margin: 3em 0;
+	margin: 5em 0;
 	background-color: #333;
 }
 
@@ -54,6 +54,28 @@ body {
 	float: right;
 	font-size: 90%;
 	color: #555;
+}
+
+
+
+#notices {
+	margin: 1em 0 3em 0;
+}
+
+#notices .notice {
+	margin: 1em 0;
+	padding: .5em;
+	color: #333;
+	background-color: #e0e0e0;
+	border-radius: .2em;
+}
+#notices .notice.error {
+	color: white;
+	background-color: #b0211e;
+}
+#notices .notice.hint {
+	color: white;
+	background-color: #19b292;
 }
 
 

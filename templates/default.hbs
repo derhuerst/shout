@@ -15,9 +15,13 @@
 	<body>
 		<main>
 			<h1 class="hidden">shout</h1>
-			{{#each notices}}
-				<p class="html {{type}}">{{{text}}}</p>
-			{{/each}}
+			{{#if notices}}
+				<div id="notices">
+					{{#each notices}}
+						<p class="notice {{type}}">{{{text}}}</p>
+					{{/each}}
+				</div>
+			{{/if}}
 			{{{ content }}}
 		</main>
 		<footer>

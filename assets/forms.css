@@ -37,3 +37,10 @@ input[type="submit"]:hover, input[type="submit"]:active, button:hover, button:ac
 a.button:hover {
 	text-decoration: none;
 }
+
+input[type="submit"].red, button.red, a.button.red {
+	background-color: #b0211e;
+}
+input[type="submit"].red:hover, button.red:hover, a.button.red:hover, input[type="submit"].red:active, button.red:active, a.button.red:active {
+	background-color: #c0312e;
+}
