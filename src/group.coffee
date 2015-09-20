@@ -29,8 +29,9 @@ module.exports = (req, reply) ->
 		if err then return onError context, reply, 'An internal error occured.', 500
 
 		if not group
-			context.short ='not found'
-			context.message ="There is no group <code>#{req.params.group}</code>."
+			context.error =
+				short:		'not found'
+				message:	"There is no group <code>#{req.params.group}</code>."
 			response = reply mainTpl context, errorTpl context
 			response.statusCode = 404
 			return

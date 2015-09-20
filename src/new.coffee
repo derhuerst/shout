@@ -7,7 +7,7 @@ mainTpl =		require '../templates/main'
 
 
 
-allowed = /[A-Za-z0-9\-]{3,50}/
+allowed = /^[A-Za-z0-9\-]{3,50}$/
 
 onError = (context, reply, text, code) ->
 	context.notices.push
