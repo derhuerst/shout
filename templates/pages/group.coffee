@@ -6,7 +6,8 @@ relativeTime =		require '../helpers/relative-time'
 
 module.exports = ($) ->
 	out = '
-<h2><code>' + $.group?.name + '</code></h2>'
+<h2><code>' + $.group?.name + '</code></h2>
+<a class="button" href="#"><span class="i i-subscribe"></span> subscribe to this group</a>'
 	if $.messages
 		out += '
 <ul id="messages">'

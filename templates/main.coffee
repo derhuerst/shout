@@ -19,6 +19,7 @@ module.exports = ($, content = '') ->
 		<link rel="stylesheet" href="/assets/main.css">
 		<link rel="stylesheet" href="/assets/type.css">
 		<link rel="stylesheet" href="/assets/forms.css">
+		<link rel="stylesheet" href="/assets/icons.css">
 	</head>
 	<body>
 		<main>
