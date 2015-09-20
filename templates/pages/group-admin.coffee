@@ -9,6 +9,10 @@ module.exports = ($) ->
 	<input type="submit" value="send">
 </form>
 
+<hr>
+
+<p>You can lock this group in case of abuse. <strong>This can\'t be undone.</strong></p>
+
 <form action="/' + $.group.name + '/' + $.group.key + '/lock" method="POST">
 	<input class="red" type="submit" value="lock ' + $.group.name + '">
 </form>'
