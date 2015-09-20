@@ -39,6 +39,33 @@ body {
 
 
 
+.grid > .half {
+	display: inline-block;
+	width: 50%;
+}
+.grid > .third {
+	display: inline-block;
+	width: 33.33%;
+}
+.grid > .half > .box, .grid > .third > .box {
+	margin-left: .5em;
+	margin-right: .5em;
+}
+.grid > .half.first, .grid > .third.first {
+	float: left;
+}
+.grid > .half.last, .grid > .third.last {
+	float: right;
+}
+.grid > .half.first > .box, .grid > .third.first > .box {
+	margin-left: 0;
+}
+.grid > .half.last > .box, .grid > .third.last > .box {
+	margin-right: 0;
+}
+
+
+
 #messages {
 	padding: 0;
 	list-style: none;

@@ -2,6 +2,13 @@ form {
 	margin: 1em 0;
 }
 
+form input:first-child {
+	margin-top: 0;
+}
+form input:last-child {
+	margin-bottom: 0;
+}
+
 input, a.button {
 	margin: 1em 0 0 0;
 	padding: .6em;
@@ -43,4 +50,9 @@ input[type="submit"].red, button.red, a.button.red {
 }
 input[type="submit"].red:hover, button.red:hover, a.button.red:hover, input[type="submit"].red:active, button.red:active, a.button.red:active {
 	background-color: #c0312e;
+}
+
+input[type="submit"][disabled], button[disabled], a.button.disabled {
+	background-color: #666;
+	cursor: not-allowed;
 }

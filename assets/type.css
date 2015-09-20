@@ -12,13 +12,14 @@ h1, h2, h3 {
 	color: #19b292;   /* mint green */
 	font-weight: 300;
 }
-h1 {
-	font-size: 200%;
-	margin: .5em 0 1em 0;
+h1, h2.banner {
+	font-size: 220%;
+	margin: 2em -3em 1em -3em;
+	text-align: center;
 }
 h2 {
 	font-size: 150%;
-	margin: .66em 0 1.25em 0;
+	margin: 3em 0 1.25em 0;
 }
 h3 {
 	font-size: 120%;
@@ -43,4 +44,12 @@ code {
 	padding: .1em;
 	font-size: 120%;
 	background-color: #555;
+}
+
+
+
+hr {
+	margin: 3em 0;
+	font-size: inherit;
+	border: 1px solid #555;
 }
