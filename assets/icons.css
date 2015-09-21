@@ -14,6 +14,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 .i-apple:before { content: "\f179"; }
-.i-android:before { content: "\f17a";}
-.i-windows:before { content: "\f17b";}
+.i-android:before { content: "\f17b";}
+.i-windows:before { content: "\f17a";}
 .i-subscribe:before { content: "\f067"; font-size: 80%; }

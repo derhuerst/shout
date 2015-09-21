@@ -40,6 +40,10 @@ body {
 
 
 
+.grid {
+	margin-top: -1em;
+	margin-bottom: -1em;
+}
 .grid > .half {
 	display: inline-block;
 	width: 50%;
