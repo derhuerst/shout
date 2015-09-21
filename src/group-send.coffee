@@ -51,7 +51,8 @@ module.exports = (req, reply) ->
 			key:	group.k
 			locked:	group.l
 
-		key = 'm:' + req.params.group + ':' + shortid.generate()   # `m` for messages
+		messageId = shortid.generate()
+		key = 'm:' + req.params.group + ':' + messageId   # `m` for messages
 		value = JSON.stringify
 		 	d:	new Date().valueOf()
 		 	b:	req.payload.body
