@@ -13,6 +13,10 @@
 	"bugs": "https://github.com/derhuerst/shout/issues",
 	"version": "0.1.0",
 	"main": "./src/index.js",
+	"bin": {
+		"shout":	"./bin/shout"
+	},
+	"preferGlobal": true,
 	"keywords": [
 		"service",
 		"push",
@@ -20,10 +24,15 @@
 		"realtime",
 		"groups",
 		"subscribe",
+		"app",
+		"webapp",
+		"service",
 		"coffeescript",
 		"javascript"
 	],
 	"dependencies": {
+		"coffee-script":			"^1.10.0",
+		"minimist":					"^1.2.0",
 		"hapi":						"^10.0.0",
 		"inert":					"^3.0.1",
 		"async":					"^1.4.2",
@@ -34,8 +43,11 @@
 		"moment":					"^2.10.6"
 	},
 	"directories": {
-		"src":		"./src"
+		"bin":		"./bin",
+		"src":		"./src",
+		"lib":		"./src"
 	},
 	"scripts": {
+		"server":	"coffee bin/shout"
 	}
 }

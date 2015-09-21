@@ -1,0 +1,36 @@
+#!/usr/bin/env coffee
+
+
+
+minimist =		require 'minimist'
+fs =			require 'fs'
+argv = minimist process.argv.slice 2
+
+
+
+help = [
+	'Usage:'
+	'shout [-p <port>]'
+	''
+	'Options:'
+	'  -p, --port    Where the server will listen. Default: 8000'
+].join '\n'
+
+if argv.h is true or argv.help is true
+	process.stdout.write help
+	process.exit 0
+
+
+
+port = 8000
+if argv.p? then port = argv.p
+if argv.port? then port = argv.port
+
+
+
+Server =		require './src/Server'
+
+server = Object.create Server
+server.init '', '', port
+server.start () ->
+	winston.info "Server listening on #{port}."
