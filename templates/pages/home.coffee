@@ -1,10 +1,10 @@
 module.exports = ($) ->
 	return '
-<h2 class="banner">Keep up with what you care about.</h2>
+<h2><i>shout</i> for everyone</h2>
 
-<p><i>shout</i> allows you to subscribe to groups you are interested in.</p>
+<p>Keep up with things you are enthusiastic about. Participate when and where participation is needed.</p>
 
-<p>A group\'s host can keep all subscribers up to date by sending messages in realtime.</p>
+<p>Use <i>shout</i> to subscribe to groups you are interested. Receive notifications from their organizers, on your phone and in real time.</p>
 
 <div class="grid">
 	<div class="third first"><div class="box">
@@ -18,8 +18,13 @@ module.exports = ($) ->
 	</div></div>
 </div>
 
-<h2>Or keep interested people informed.</h2>
+<p>Featured groups:
+	<a href="' + $.site.url + '/bln-refugees-help"><code>bln-refugees-help</code></a>,
+	<a href="' + $.site.url + '/festivals-germany"><code>festivals-germany</code></a>
+</p>
 
-<p>Use <i>shout</i> to reach, inform and coordinate them immediatly.</p>
+<h2><i>shout</i> for organizers</h2>
+
+<p>Inform and coordinate people immediatly. Reach and motivate others enthusiastic about what you care about.</p>
 
 <a class="button" href="/new">create a group</a>'
