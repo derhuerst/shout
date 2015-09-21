@@ -10,7 +10,11 @@ argv = minimist process.argv.slice 2
 
 help = [
 	'Usage:'
-	'shout [-p <port>]'
+	'shout -c <cert> -k <key> [-p <port>]'
+	''
+	'Arguments:'
+	'  -c, --cert    The SSL certificate.'
+	'  -k, --key     The SSL key.'
 	''
 	'Options:'
 	'  -p, --port    Where the server will listen. Default: 8000'
@@ -22,6 +26,18 @@ if argv.h is true or argv.help is true
 
 
 
+cert = null
+if argv.c? then cert = argv.c
+else if argv.cert? then cert = argv.cert
+else throw new Error 'Missing `--cert` argument.'
+cert = fs.readFileSync cert
+
+key = null
+if argv.k? then key = argv.k
+else if argv.key? then key = argv.key
+else throw new Error 'Missing `--key` argument.'
+key = fs.readFileSync key
+
 port = 8000
 if argv.p? then port = argv.p
 if argv.port? then port = argv.port
@@ -31,6 +47,6 @@ if argv.port? then port = argv.port
 Server =		require './src/Server'
 
 server = Object.create Server
-server.init '', '', port
+server.init cert, key, port
 server.start () ->
 	winston.info "Server listening on #{port}."
