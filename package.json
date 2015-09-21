@@ -48,6 +48,7 @@
 		"lib":		"./src"
 	},
 	"scripts": {
-		"server":	"coffee bin/shout"
+		"setup":	"./self-signed-certificate.zsh",
+		"server":	"coffee bin/shout -c server.crt -k server.key"
 	}
 }

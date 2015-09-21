@@ -64,9 +64,9 @@ module.exports =
 
 		@server = server = new hapi.Server()
 		server.connection
-			# tls:
-			# 	cert:			cert
-			# 	key:			key
+			tls:
+			 	cert:			cert
+			 	key:			key
 			port:				port
 			routes:
 				files:

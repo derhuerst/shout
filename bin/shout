@@ -44,9 +44,9 @@ if argv.port? then port = argv.port
 
 
 
-Server =		require './src/Server'
+Server =		require '../src/Server'
 
 server = Object.create Server
 server.init cert, key, port
 server.start () ->
-	winston.info "Server listening on #{port}."
+	console.info "Server listening on #{port}."
