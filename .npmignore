@@ -7,3 +7,6 @@ npm-debug.log
 
 .editorconfig
 .gitignore
+
+server.crt
+server.key

@@ -19,8 +19,8 @@ module.exports = ($) ->
 </div>
 
 <p>Featured groups:
-	<a href="' + $.site.url + '/bln-refugees-help"><code>bln-refugees-help</code></a>,
-	<a href="' + $.site.url + '/festivals-germany"><code>festivals-germany</code></a>
+	<a href="/bln-refugees-help"><code>bln-refugees-help</code></a>,
+	<a href="/festivals-germany"><code>festivals-germany</code></a>
 </p>
 
 <h2><i>shout</i> for organizers</h2>
