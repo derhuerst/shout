@@ -65,5 +65,7 @@ module.exports = (req, reply) ->
 				response.statusCode = 500
 				return
 
+			redis.publish 'm', key   # `m` for messages
+
 			context.success = true
 			reply mainTpl context, tpl context
