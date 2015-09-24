@@ -22,11 +22,10 @@ module.exports = (req, reply) ->
 		group:
 			name:	req.params.group
 		notices:	[]
-	redis = @redis
+	orm = @orm
 
-	key = 'g:' + req.params.group   # `g` for groups
-	redis.get key, (err, group) ->
-		if err then return onError context, reply, 'An internal error occured.', 500
+	orm.getGroup req.params.group
+	.then (group) ->
 
 		if not group
 			context.error =
@@ -36,27 +35,15 @@ module.exports = (req, reply) ->
 			response.statusCode = 404
 			return
 
-		group = JSON.parse group
-		context.group =
-			name:	req.params.group
-			key:	group.k
-			locked:	group.l
-
-		# todo: find a way to stream keys for performance
-		pattern = 'm:' + req.params.group + ':*'   # `m` for messages
-		redis.keys pattern, (err, keys) ->
-			if err then return onError context, reply, 'An internal error occured.', 500
-
+		context.group = group
+		context.group.name = req.params.group
 			context.messages = []
-			async.eachLimit keys, 50, ((key, cb) ->
-				# todo: use [redis transactions](http://redis.io/topics/transactions) or at least [redis pipelining](http://redis.io/topics/pipelining)
-				redis.get key, (err, message) ->
-					message = JSON.parse message
-					context.messages.push
-						date:	new Date message.d
-						body:	message.b
-					cb()
-			), () ->
-				if context.messages.length is 0
-					context.messages = null
-				reply mainTpl context, tpl context
+
+		orm.getMessagesOfGroup req.params.group
+		.then (messages) ->
+			context.messages = messages
+			reply mainTpl context, tpl context
+
+		.catch (err) -> onError context, reply, 'An internal error occured.', 500
+
+	.catch (err) -> onError context, reply, 'An internal error occured.', 500

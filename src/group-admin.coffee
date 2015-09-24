@@ -21,11 +21,10 @@ module.exports = (req, reply) ->
 		group:
 			name:	req.params.group
 		notices:	[]
-	redis = @redis
+	orm = @orm
 
-	key = 'g:' + req.params.group   # `g` for groups
-	redis.get key, (err, group) ->
-		if err then return onError context, reply, 'An internal error occured.', 500
+	orm.get req.params.group
+	.then (group) ->
 
 		if not group
 			context.error =
@@ -35,8 +34,7 @@ module.exports = (req, reply) ->
 			response.statusCode = 404
 			return
 
-		group = JSON.parse group
-		if group.k isnt req.params.key
+		if group.key isnt req.params.key
 			context.error =
 				short:		'wrong key'
 				message:	"The key is incorrect."
@@ -44,8 +42,8 @@ module.exports = (req, reply) ->
 			response.statusCode = 403
 			return
 
-		context.group =
-			name:	req.params.group
-			key:	group.k
-			locked:	group.l
+		context.group = group
+		context.group.name = req.params.group
 		reply mainTpl context, tpl context
+
+	.catch (err) -> onError context, reply, 'An internal error occured.', 500

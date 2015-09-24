@@ -8,7 +8,7 @@ module.exports = ($) ->
 	out = '
 <h2><code>' + $.group?.name + '</code></h2>
 <a class="button" href="#"><span class="i i-subscribe"></span> subscribe to this group</a>'
-	if $.messages
+	if $.messages and $.messages.length > 0
 		out += '
 <ul id="messages">'
 		for message in $.messages

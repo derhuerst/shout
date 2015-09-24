@@ -2,8 +2,8 @@ hapi =			require 'hapi'
 inert =			require 'inert'
 path =			require 'path'
 async =			require 'async'
-redis =			require 'redis'
 
+orm =			require 'shout-orm'
 site =			require '../package.json'
 
 
@@ -53,7 +53,7 @@ module.exports =
 	site:		site
 
 	server:		null
-	redis:		null
+	orm:		orm
 
 
 
@@ -76,7 +76,7 @@ module.exports =
 		server.bind this
 		server.route @routes
 
-		@redis = redis.createClient()
+		@orm.connect()
 
 		return this
 
