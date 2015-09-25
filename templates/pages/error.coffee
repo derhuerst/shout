@@ -1,5 +1,5 @@
 module.exports = ($) ->
 	return '
-<h2>' + ($.error?.short or 'error') + '</h2>
+<h2>' + ($.error?.error or 'Unknown Error') + '</h2>
 
-<p>' + $.error.message + '</p>'
+<p>' + $.error?.message + '</p>'

@@ -5,6 +5,7 @@ async =			require 'async'
 
 orm =			require 'shout-orm'
 site =			require '../package.json'
+error =			require './error'
 
 
 
@@ -71,9 +72,10 @@ module.exports =
 			routes:
 				files:
 					relativeTo:	path.join __dirname, '..'
+		server.bind this
 		server.register inert, (err) ->
 			if err then throw err
-		server.bind this
+		server.ext 'onPreResponse', error
 		server.route @routes
 
 		@orm.connect()

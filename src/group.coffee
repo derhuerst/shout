@@ -1,8 +1,10 @@
 async =			require 'async'
+boom =			require 'boom'
 
 tpl =			require '../templates/pages/group'
 errorTpl =		require '../templates/pages/error'
 mainTpl =		require '../templates/main'
+
 
 
 
@@ -28,22 +30,16 @@ module.exports = (req, reply) ->
 	.then (group) ->
 
 		if not group
-			context.error =
-				short:		'not found'
-				message:	"There is no group <code>#{req.params.group}</code>."
-			response = reply mainTpl context, errorTpl context
-			response.statusCode = 404
-			return
+			return reply boom.notFound "There is no group <code>#{req.params.group}</code>."
 
 		context.group = group
 		context.group.name = req.params.group
-			context.messages = []
+		context.messages = []
 
 		orm.getMessagesOfGroup req.params.group
 		.then (messages) ->
 			context.messages = messages
 			reply mainTpl context, tpl context
 
-		.catch (err) -> onError context, reply, 'An internal error occured.', 500
-
-	.catch (err) -> onError context, reply, 'An internal error occured.', 500
+		.catch (err) -> reply err
+	.catch (err) -> reply err
