@@ -9,15 +9,6 @@ mainTpl =		require '../templates/main'
 
 allowed = /^[A-Za-z0-9\-]{3,30}$/
 
-onError = (context, reply, text, code) ->
-	context.notices.push
-		type:	'error'
-		text:	text
-	response = reply mainTpl context, tpl context
-	response.statusCode = code
-
-
-
 module.exports = (req, reply) ->
 	context =
 		site:		@site
@@ -25,17 +16,27 @@ module.exports = (req, reply) ->
 		notices:	[]
 	orm = @orm
 
-	if not req.payload
-		reply mainTpl context, tpl context
-		return
+	if not req.payload then return reply mainTpl context, tpl context
 
 	if not allowed.test req.payload.name
-		return onError context, reply, 'The group name is either too long or has special characters. Only <code>A-Z</code>, <code>a-z</code>, <code>0-9</code> and <code>-</code> are allowed.', 400
+		context.notices.push
+			type:	'error'
+			text:	'The group name is either too long or has special characters. Only <code>A-Z</code>, <code>a-z</code>, <code>0-9</code> and <code>-</code> are allowed.'
+		response = reply mainTpl context, tpl context
+		response.statusCode = 400
+		return
+
 	context.group.name = req.payload.name
 
 	orm.groupExists req.payload.name
 	.then (groupExists) ->
-		if groupExists then return onError context, reply, "The name <code>#{req.payload.name}</code> is already taken.", 400
+		if groupExists
+			context.notices.push
+				type:	'error'
+				text:	"The name <code>#{req.payload.name}</code> is already taken."
+			response = reply mainTpl context, tpl context
+			response.statusCode = 400
+			return
 
 		context.group =
 			name:	req.payload.name
@@ -48,6 +49,6 @@ module.exports = (req, reply) ->
 		.then () ->
 			context.success = true
 			reply mainTpl context, tpl context
-		.catch (err) -> onError context, reply, 'An internal error occured.', 500
+		.catch (err) -> reply err
 
-	.catch (err) -> onError context, reply, 'An internal error occured.', 500
+	.catch (err) -> reply err

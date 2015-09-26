@@ -9,15 +9,6 @@ mainTpl =		require '../templates/main'
 
 
 
-onError = (context, reply, text, code) ->
-	context.notices.push
-		type:	'error'
-		text:	text
-	response = reply mainTpl context, tpl context
-	response.statusCode = code
-
-
-
 module.exports = (req, reply) ->
 	context =
 		site:		@site
