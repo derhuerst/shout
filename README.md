@@ -2,7 +2,12 @@
 
 *shout* is a service to let organizers of a group send push notifications its subscribers.
 
-## What is broken?
+
+
+## The Motivation behind *shout*
+
+
+### What is broken?
 
 **People want to receive notifications about things they are interested in.** For example:
 
@@ -13,8 +18,7 @@
 There are tools for this like Facebook, Twitter, GitHub and blogs. **But all of these are either for long-term things** (like joining a group on Facebook) **or not realtime enough** (don't provide push notifications). Many people have notifications turned off for Twitter & Facebook, simply because the **noise level is too high**, simply because they don't want to go through all the selfies, game invitations and spam.
 
 
-
-## How do we solve it?
+### How do we solve it?
 
 **Let's create a service that enables people to do just one thing: To get notified what happens in certain groups.** For this we need two things:
 
@@ -23,7 +27,7 @@ There are tools for this like Facebook, Twitter, GitHub and blogs. **But all of 
 
 
 
-## What about Pushbullet & Co?
+### What about Pushbullet & Co?
 
 **There are soo many services for push notifications, but they all have shortcomings.**
 
