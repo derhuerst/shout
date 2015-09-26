@@ -29,9 +29,6 @@ module.exports = (req, reply) ->
 	orm.getGroup req.params.group
 	.then (group) ->
 
-		if not group
-			return reply boom.notFound "There is no group <code>#{req.params.group}</code>."
-
 		context.group = group
 		context.group.name = req.params.group
 		context.messages = []

@@ -10,18 +10,15 @@ errorTpl =		require '../templates/pages/error'
 module.exports = (req, reply) ->
 	err = req.response
 	return reply.continue() unless err instanceof Error
+	if not err.isBoom then err = boom.wrap err, err.statusCode
 
-	console.error [
-		err.output.statusCode
-		if err.stack then err.stack else err.toString()
-	].join ' '
-	if err.isDeveloperError
-		console.error 'isDeveloperError'
-		err = boom.badImplementation()
+	if err.output?.statusCode
+		console.error err.output.statusCode, err.toString()
+	else console.error err.toString()
 
 	context =
 		site:		@site
 		notices:	[]
-		error:		err
-	response = reply mainTpl context, errorTpl context
-	response.statusCode = err.output.statusCode
+		error:		err.output.payload
+	err.output.payload = mainTpl context, errorTpl context
+	reply err
