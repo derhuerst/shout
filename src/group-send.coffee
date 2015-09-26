@@ -15,7 +15,7 @@ module.exports = (req, reply) ->
 		group:
 			name:	req.params.group
 		notices:	[]
-	ormd = @orm
+	orm = @orm
 
 	orm.getGroup req.params.group
 	.then (group) ->

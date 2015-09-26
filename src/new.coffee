@@ -43,9 +43,7 @@ module.exports = (req, reply) ->
 			key:	uuid.v4()
 			locked:	false
 
-		orm.setGroup context.group.name,
-			key:	context.group.key
-			locked:	context.group.locked
+		orm.setGroup context.group.name, context.group
 		.then () ->
 			context.success = true
 			reply mainTpl context, tpl context
