@@ -12,9 +12,11 @@ module.exports = (req, reply) ->
 	return reply.continue() unless err instanceof Error
 	if not err.isBoom then err = boom.wrap err, err.statusCode
 
-	if err.output?.statusCode
-		console.error err.output.statusCode, err.toString()
-	else console.error err.toString()
+	console.error [
+		err.output.statusCode
+		if err.stack then err.stack else err.toString()
+	].join ' '
+	if err.isDeveloperError then err = boom.badImplementation()
 
 	context =
 		site:		@site

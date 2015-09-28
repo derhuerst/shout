@@ -17,14 +17,16 @@ module.exports = (req, reply) ->
 		notices:	[]
 	orm = @orm
 
-	orm.getGroup req.params.group
+	orm.groups.get req.params.group
 	.then (group) ->
+
+		if not group then return reply boom.notFound "There is no group <code>#{req.params.group}</code>."
 
 		context.group = group
 		context.group.name = req.params.group
 		context.messages = []
 
-		orm.getMessagesOfGroup req.params.group
+		orm.messages.all req.params.group
 		.then (messages) ->
 			context.messages = messages
 			reply mainTpl context, tpl context

@@ -16,13 +16,14 @@ module.exports = (req, reply) ->
 		notices:	[]
 	orm = @orm
 
-	orm.getGroup req.params.group
+	orm.groups.get req.params.group
 	.then (group) ->
 
-		if group.key isnt req.params.key then return reply boom.forbidden "The key is incorrect."
+		if not group then throw boom.notFound "There is no group <code>#{req.params.group}</code>."
+		if group.key isnt req.params.key then throw boom.forbidden "The key is incorrect."
 
 		context.group = group
 		context.group.name = req.params.group
 		reply mainTpl context, tpl context
 
-	.catch (err) -> reply err
+	.catch (err) -> throw err
