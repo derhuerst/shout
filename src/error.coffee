@@ -14,13 +14,16 @@ module.exports = (req, reply) ->
 
 	console.error [
 		err.output.statusCode
-		if err.stack then err.stack else err.toString()
-	].join ' '
-	if err.isDeveloperError then err = boom.badImplementation()
+		req.method.toUpperCase()
+		req.path
+	].join '\t'
+	if err.isDeveloperError then console.error err.stack
 
+	# show a different version to the user
+	if err.isDeveloperError then err = boom.badImplementation()
 	context =
 		site:		@site
 		notices:	[]
 		error:		err.output.payload
-	err.output.payload = mainTpl context, errorTpl context
-	reply err
+	response = reply mainTpl context, errorTpl context
+	response.statusCode = err.statusCode
