@@ -11,10 +11,10 @@ module.exports = ($) ->
 		<a class="button" href="#"><span class="i i-apple"></span> App Store</a>
 	</div></div>
 	<div class="third"><div class="box">
-		<a class="button disabled" href="#"><span class="i i-android"></span> Play Store</a>
+		<a class="button disabled" href="#" title="The Android app is not available yet."><span class="i i-android"></span> Play Store</a>
 	</div></div>
 	<div class="third last"><div class="box">
-		<a class="button disabled" href="#"><span class="i i-windows"></span> Windows Store</a>
+		<a class="button disabled" href="#" title="The Windows Phone app is not available yet."><span class="i i-windows"></span> Windows Store</a>
 	</div></div>
 </div>
 
