@@ -7,6 +7,10 @@ orm =			require 'shout-orm'
 site =			require '../package.json'
 error =			require './error'
 
+api =
+	register:	require './api/register'
+	activate:	require './api/activate'
+
 pages =
 	home:		require './pages/home'
 	new:		require './pages/new'
@@ -32,6 +36,14 @@ module.exports =
 					path: 'assets'
 					listing: false
 					index: true
+		}, {
+			path:		'/register'
+			method:		[ 'POST' ]
+			handler:	api.register
+		}, {
+			path:		'/activate'
+			method:		[ 'POST' ]
+			handler:	api.activate
 		}, {
 			path:		'/'
 			method:		'GET'
