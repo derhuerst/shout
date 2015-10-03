@@ -1,8 +1,9 @@
+shortid =		require 'shortid'
 boom =			require 'boom'
 
-tpl =			require '../templates/pages/group-lock'
-errorTpl =		require '../templates/pages/error'
-mainTpl =		require '../templates/main'
+tpl =			require '../../templates/pages/group-send'
+errorTpl =		require '../../templates/pages/error'
+mainTpl =		require '../../templates/main'
 
 
 
@@ -23,12 +24,13 @@ module.exports = (req, reply) ->
 		if group.key isnt req.params.key then return reply boom.forbidden "The key is incorrect."
 
 		context.group = group
-		context.group.locked = true
+		context.group.name = req.params.group
 
-		orm.groups.lock req.params.group
+		messageId = shortid.generate()
+		orm.messages.add req.params.group, messageId, req.payload.body, new Date().valueOf()   # todo: escape html
 		.then () ->
 			context.success = true
-			reply mainTpl contect, tpl context
+			reply mainTpl context, tpl context
 
 		.catch (err) -> throw err
 	.catch (err) -> throw err

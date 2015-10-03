@@ -1,8 +1,8 @@
 boom =			require 'boom'
 
-tpl =			require '../templates/pages/group-admin'
-errorTpl =		require '../templates/pages/error'
-mainTpl =		require '../templates/main'
+tpl =			require '../../templates/pages/group-admin'
+errorTpl =		require '../../templates/pages/error'
+mainTpl =		require '../../templates/main'
 
 
 

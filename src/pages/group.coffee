@@ -1,9 +1,9 @@
 async =			require 'async'
 boom =			require 'boom'
 
-tpl =			require '../templates/pages/group'
-errorTpl =		require '../templates/pages/error'
-mainTpl =		require '../templates/main'
+tpl =			require '../../templates/pages/group'
+errorTpl =		require '../../templates/pages/error'
+mainTpl =		require '../../templates/main'
 
 
 

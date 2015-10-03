@@ -7,6 +7,14 @@ orm =			require 'shout-orm'
 site =			require '../package.json'
 error =			require './error'
 
+pages =
+	home:		require './pages/home'
+	new:		require './pages/new'
+	group:		require './pages/group'
+	admin:		require './pages/group-admin'
+	send:		require './pages/group-send'
+	lock:		require './pages/group-lock'
+
 
 
 
@@ -27,27 +35,27 @@ module.exports =
 		}, {
 			path:		'/'
 			method:		'GET'
-			handler:	require './home.coffee'
+			handler:	pages.home
 		}, {
 			path:		'/new'
 			method:		[ 'GET', 'POST' ]
-			handler:	require './new.coffee'
+			handler:	pages.new
 		}, {
 			path:		'/{group}'
 			method:		'GET'
-			handler:	require './group.coffee'
+			handler:	pages.group
 		}, {
 			path:		'/{group}/{key}'
 			method:		'GET'
-			handler:	require './group-admin.coffee'
+			handler:	pages.admin
 		}, {
 			path:		'/{group}/{key}/send'
 			method:		[ 'GET', 'POST' ]
-			handler:	require './group-send.coffee'
+			handler:	pages.send
 		}, {
 			path:		'/{group}/{key}/lock'
 			method:		[ 'GET', 'POST' ]
-			handler:	require './group-lock.coffee'
+			handler:	pages.lock
 		}
 	],
 

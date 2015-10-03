@@ -1,8 +1,8 @@
 uuid =			require 'uuid'
 boom =			require 'boom'
 
-tpl =			require '../templates/pages/new'
-mainTpl =		require '../templates/main'
+tpl =			require '../../templates/pages/new'
+mainTpl =		require '../../templates/main'
 
 
 

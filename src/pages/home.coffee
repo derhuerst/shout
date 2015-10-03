@@ -1,5 +1,5 @@
-tpl =			require '../templates/pages/home'
-mainTpl =		require '../templates/main'
+tpl =			require '../../templates/pages/home'
+mainTpl =		require '../../templates/main'
 
 
 
