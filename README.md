@@ -2,6 +2,46 @@
 
 *shout* is a service to let organizers of a group send push notifications its subscribers.
 
+> ## shout for everyone
+>
+> Keep up with things you are enthusiastic about. Participate when and where participation is needed.
+>
+> Use shout to subscribe to groups you are interested. Receive notifications from their organizers, on your phone and in real time.
+>
+> ## shout for organizers
+>
+> Inform and coordinate people immediatly. Reach and motivate others enthusiastic about what you care about.
+
+
+
+## Installing
+
+[Redis](http://redis.io/) needs to be installed and running.
+
+I'm working on support for installing globally. Right now, you should use Git.
+
+```shell
+git clone https://github.com/derhuerst/shout.git shout
+cd shout
+npm i
+```
+
+
+
+## Usage
+
+To just run *shout* in foreground:
+
+```shell
+npm run server
+```
+
+To run *shout* as a daemon:
+
+```shell
+npm start
+```
+
 
 
 ## The Motivation behind *shout*
@@ -36,6 +76,14 @@ There are tools for this like Facebook, Twitter, GitHub and blogs. **But all of 
 - There are services targeted to paying, commercial customers.
 - There are services newsletter companies like MailChimp, but again, newsletters are far too noisy and not realtime enough.
 - There are chats, IRC and so on, where the complexity of following a group is too high (and noise is a problem again). The barrier is too damn high.
+
+
+
+## The Architecture of *shout*
+
+*shout* uses [`shout-orm`](https://github.com/derhuerst/shout-orm) as database layer, which responsible for any communication with [Redis](http://redis.io/).
+
+[hapi](http://hapijs.com/) powers the [web server](src/Server.coffee). [All templates](templates) are written in plain CoffeeScript.
 
 
 
