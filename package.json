@@ -12,7 +12,7 @@
 	"repository": "git://github.com/derhuerst/shout.git",
 	"bugs": "https://github.com/derhuerst/shout/issues",
 	"version": "0.1.0",
-	"main": "./src/index.js",
+	"main": "./src/Server.coffee",
 	"bin": {
 		"shout":	"./bin/shout"
 	},
@@ -35,14 +35,13 @@
 		"minimist":					"^1.2.0",
 		"hapi":						"^10.3.0",
 		"inert":					"^3.0.2",
-		"async":					"^1.4.2",
 		"shout-orm":				"derhuerst/shout-orm#master",
 		"short-hash":				"^1.0.0",
 		"uuid":						"^2.0.1",
 		"moment":					"^2.10.6",
 		"shortid":					"^2.2.2"
 	},
-	"irectories": {
+	"directories": {
 		"bin":		"./bin",
 		"src":		"./src",
 		"lib":		"./src"

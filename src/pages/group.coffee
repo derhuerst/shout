@@ -1,4 +1,3 @@
-async =			require 'async'
 boom =			require 'boom'
 
 tpl =			require '../../templates/pages/group'
