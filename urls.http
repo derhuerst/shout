@@ -1,9 +1,0 @@
-GET		/
-GET		/new
-POST	/new
-GET		/{group}
-GET		/{group}/{key}
-GET		/{group}/{key}/send
-POST	/{group}/{key}/send
-GET		/{group}/{key}/lock
-POST	/{group}/{key}/lock
