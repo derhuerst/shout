@@ -49,9 +49,9 @@
 		"lib":		"./src"
 	},
 	"scripts": {
-		"setup":	"./self-signed-certificate.zsh",
 		"server":	"coffee ./bin/shout -c server.crt -k server.key",
 		"start":	"forever start -c coffee ./bin/shout -c server.crt -k server.key",
+		"crt":		"./scripts/self-signed-certificate.zsh",
 		"stop":		"forever stop ./bin/shout"
 	}
 }
