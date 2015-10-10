@@ -3,6 +3,7 @@
 
 
 minimist =		require 'minimist'
+config =		require 'config'
 fs =			require 'fs'
 argv = minimist process.argv.slice 2
 
@@ -10,15 +11,13 @@ argv = minimist process.argv.slice 2
 
 help = [
 	'Usage:'
-	'shout -c <cert> -k <key> [-p <port>]'
-	''
-	'Arguments:'
-	'  -c, --cert		The SSL certificate.'
-	'  -k, --key		The SSL key.'
+	'shout [-c <cert>] [-k <key>] [-p <port>] [-P <port>]'
 	''
 	'Options:'
-	'  -p, --port		HTTPS server port. Default: 8000'
-	'  -P, --http-port	HTTP server port. Default: 8001'
+	'  -c, --cert		The SSL certificate.'
+	'  -k, --key		The SSL key.'
+	'  -p, --https-port	Default: 8000'
+	'  -P, --http-port	Default: 8001'
 ].join '\n'
 
 if argv.h is true or argv.help is true
@@ -30,22 +29,30 @@ if argv.h is true or argv.help is true
 cert = null
 if argv.c? then cert = argv.c
 else if argv.cert? then cert = argv.cert
+else if config.has 'ssl.cert'
+	cert = config.get 'ssl.cert'
 else throw new Error 'Missing `--cert` argument.'
 cert = fs.readFileSync cert
 
 key = null
 if argv.k? then key = argv.k
 else if argv.key? then key = argv.key
+else if config.has 'ssl.key'
+	key = config.get 'ssl.key'
 else throw new Error 'Missing `--key` argument.'
 key = fs.readFileSync key
 
 port = 8000
 if argv.p? then port = argv.p
-if argv.port? then port = argv.port
+else if argv.port? then port = argv.port
+else if config.has 'ports.https'
+	port = config.get 'ports.https'
 
 httpPort = 8001
 if argv.P? then port = argv.P
 if argv.httpPort? then httpPort = argv.httpPort
+else if config.has 'ports.http'
+	httpPort = config.get 'ports.http'
 
 
 

@@ -1,0 +1,11 @@
+{
+	"hostname":		"localhost",
+	"ports": {
+		"https":	8000,
+		"http":		8001
+	},
+	"ssl": {
+		"cert":		"self-signed.crt",
+		"key":		"self-signed.key"
+	}
+}

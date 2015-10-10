@@ -1,0 +1,11 @@
+{
+	"hostname":		"shout.live",
+	"ports": {
+		"https":	443,
+		"http":		80
+	},
+	"ssl": {
+		"cert":		"~/shout.live.crt",
+		"key":		"~/shout.live.key"
+	}
+}

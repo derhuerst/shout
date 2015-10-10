@@ -33,6 +33,7 @@
 	"dependencies": {
 		"coffee-script":			"^1.10.0",
 		"minimist":					"^1.2.0",
+		"config":					"^1.16.0",
 		"hapi":						"^10.3.0",
 		"inert":					"^3.0.2",
 		"callback-count":			"^0.2.0",
@@ -49,9 +50,9 @@
 		"lib":		"./src"
 	},
 	"scripts": {
-		"server":	"coffee ./bin/shout -c server.crt -k server.key",
-		"start":	"forever start -c coffee ./bin/shout -c server.crt -k server.key",
 		"crt":		"./scripts/self-signed-certificate.zsh",
+		"server":	"coffee ./bin/shout",
+		"start":	"forever start -c coffee ./bin/shout",
 		"stop":		"forever stop ./bin/shout"
 	}
 }
