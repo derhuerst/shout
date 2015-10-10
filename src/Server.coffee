@@ -1,11 +1,13 @@
 hapi =			require 'hapi'
 inert =			require 'inert'
 path =			require 'path'
-async =			require 'async'
+http =			require 'http'
+ccount =		require 'callback-count'
 
 orm =			require 'shout-orm'
 site =			require '../package.json'
 error =			require './error'
+redirectHttp =	require './redirect-http'
 
 api =
 	register:	require './api/register'
@@ -74,11 +76,12 @@ module.exports =
 	site:		site
 
 	server:		null
+	httpServer:	null
 	orm:		orm
 
 
 
-	init: (cert, key, port) ->
+	init: (cert, key, port, httpPort) ->
 		if not cert? then throw new Error 'Missing `cert` argument.'
 		if not key? then throw new Error 'Missing `key` argument.'
 		if not port? then throw new Error 'Missing `port` argument.'
@@ -98,6 +101,9 @@ module.exports =
 		server.ext 'onPreResponse', error
 		server.route @routes
 
+		@httpServer = http.createServer redirectHttp port
+		@httpServer.port = httpPort
+
 		@orm.connect()
 
 		return this
@@ -105,9 +111,13 @@ module.exports =
 
 
 	start: (cb = ()->) ->
-		@server.start cb
+		tasks = ccount 2, cb
+		@server.start tasks.next
+		@httpServer.listen @httpServer.port, tasks.next
 		return this
 
 	stop: (cb = ()->) ->
-		@server.stop cb
+		tasks = ccount 2, cb
+		@server.stop tasks.next
+		@httpServer.close tasks.next
 		return this

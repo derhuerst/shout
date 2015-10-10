@@ -13,11 +13,12 @@ help = [
 	'shout -c <cert> -k <key> [-p <port>]'
 	''
 	'Arguments:'
-	'  -c, --cert    The SSL certificate.'
-	'  -k, --key     The SSL key.'
+	'  -c, --cert		The SSL certificate.'
+	'  -k, --key		The SSL key.'
 	''
 	'Options:'
-	'  -p, --port    Where the server will listen. Default: 8000'
+	'  -p, --port		HTTPS server port. Default: 8000'
+	'  -P, --http-port	HTTP server port. Default: 8001'
 ].join '\n'
 
 if argv.h is true or argv.help is true
@@ -42,11 +43,16 @@ port = 8000
 if argv.p? then port = argv.p
 if argv.port? then port = argv.port
 
+httpPort = 8001
+if argv.P? then port = argv.P
+if argv.httpPort? then httpPort = argv.httpPort
+
 
 
 Server =		require '../src/Server'
 
 server = Object.create Server
-server.init cert, key, port
+server.init cert, key, port, httpPort
 server.start () ->
-	console.info "Server listening on #{port}."
+	console.info "HTTPS server listening on #{port}."
+	console.info "HTTP server listening on #{httpPort}."
