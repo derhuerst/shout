@@ -37,10 +37,10 @@
 		"inert":					"^3.0.2",
 		"callback-count":			"^0.2.0",
 		"shout-orm":				"derhuerst/shout-orm#master",
-		"short-hash":				"^1.0.0",
 		"uuid":						"^2.0.1",
-		"moment":					"^2.10.6",
-		"shortid":					"^2.2.2"
+		"boom":						"^2.9.0",
+		"shortid":					"^2.2.2",
+		"moment":					"^2.10.6"
 	},
 	"directories": {
 		"bin":		"./bin",
