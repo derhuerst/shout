@@ -1,5 +1,6 @@
 shortid =		require 'shortid'
 boom =			require 'boom'
+escape =		require 'escape-html'
 
 tpl =			require '../../templates/pages/group-send'
 errorTpl =		require '../../templates/pages/error'
@@ -26,8 +27,9 @@ module.exports = (req, reply) ->
 		context.group = group
 		context.group.name = req.params.group
 
-		messageId = shortid.generate()
-		orm.messages.add req.params.group, messageId, req.payload.body, new Date().valueOf()   # todo: escape html
+		id = shortid.generate()
+		body = escape req.payload.body
+		orm.messages.add req.params.group, id, body, new Date().valueOf()   # todo: escape html
 		.then () ->
 			context.success = true
 			reply mainTpl context, tpl context
