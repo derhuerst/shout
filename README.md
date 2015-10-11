@@ -16,14 +16,24 @@
 
 ## Installing
 
-[Redis](http://redis.io/) needs to be installed and running.
-
 I'm working on support for installing globally. Right now, you should use Git.
 
 ```shell
 git clone https://github.com/derhuerst/shout.git shout
 cd shout
-npm i
+npm install   # dependencies
+```
+
+
+### Redis
+
+[Redis](http://redis.io/) needs to be installed.
+
+If you want to run the redis-server by yourself, adjust the [config](config) appropriatly. You can also let *shout* take care of Redis:
+
+```shell
+npm run start-redis   # to start Redis as a daemon
+npm run stop-redis   # to stop the daemon
 ```
 
 
@@ -36,10 +46,16 @@ To just run *shout* in foreground:
 npm run server
 ```
 
-To run *shout* as a daemon:
+To run *shout* as a daemon, using [forever](https://github.com/foreverjs/forever):
 
 ```shell
 npm start
+```
+
+To stop the daemon:
+
+```shell
+npm stop
 ```
 
 
@@ -82,6 +98,10 @@ There are tools for this like Facebook, Twitter, GitHub and blogs. **But all of 
 ## The Architecture of *shout*
 
 *shout* uses [`shout-orm`](https://github.com/derhuerst/shout-orm) as database layer, which responsible for any communication with [Redis](http://redis.io/).
+
+[`shout-api`](https://github.com/derhuerst/shout-api) is the API server.
+
+[`shout-dispatch`](https://github.com/derhuerst/shout-dispatch) sends push notifications to devices.
 
 [hapi](http://hapijs.com/) powers the [web server](src/Server.coffee). [All templates](templates) are written in plain CoffeeScript.
 
