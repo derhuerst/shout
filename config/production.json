@@ -1,11 +1,17 @@
 {
-	"hostname":		"shout.live",
+	"hostname":			"shout.live",
 	"ports": {
-		"https":	443,
-		"http":		80
+		"https":		443,
+		"http":			80
 	},
 	"ssl": {
-		"cert":		"~/shout.live.crt",
-		"key":		"~/shout.live.key"
+		"cert":			"~/shout.live.crt",
+		"key":			"~/shout.live.key"
+	},
+	"redis": {
+		"pidfile":		"~/redis/redis.pid",
+		"port":			10000,
+		"databases":	1,
+		"dir":			"~/redis"
 	}
 }

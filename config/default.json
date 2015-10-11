@@ -1,11 +1,17 @@
 {
-	"hostname":		"localhost",
+	"hostname":			"localhost",
 	"ports": {
-		"https":	8000,
-		"http":		8001
+		"https":		8000,
+		"http":			8001
 	},
 	"ssl": {
-		"cert":		"self-signed.crt",
-		"key":		"self-signed.key"
+		"cert":			"self-signed.crt",
+		"key":			"self-signed.key"
+	},
+	"redis": {
+		"pidfile":		"redis.pid",
+		"port":			6379,
+		"databases":	1,
+		"dir":			"."
 	}
 }

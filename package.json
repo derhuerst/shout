@@ -14,7 +14,7 @@
 	"version": "0.1.0",
 	"main": "./src/Server.coffee",
 	"bin": {
-		"shout":	"./bin/shout"
+		"shout":		"./bin/shout"
 	},
 	"preferGlobal": true,
 	"keywords": [
@@ -45,14 +45,16 @@
 		"moment":					"^2.10.6"
 	},
 	"directories": {
-		"bin":		"./bin",
-		"src":		"./src",
-		"lib":		"./src"
+		"bin":			"./bin",
+		"src":			"./src",
+		"lib":			"./src"
 	},
 	"scripts": {
-		"crt":		"./scripts/self-signed-certificate.zsh",
-		"server":	"coffee ./bin/shout",
-		"start":	"forever start -c coffee ./bin/shout",
-		"stop":		"forever stop ./bin/shout"
+		"crt":			"./scripts/self-signed-certificate.zsh",
+		"start-redis":	"coffee ./scripts/start-redis.coffee",
+		"stop-redis":	"coffee ./scripts/stop-redis.coffee",
+		"server":		"coffee ./bin/shout",
+		"start":		"forever start -c coffee ./bin/shout",
+		"stop":			"forever stop ./bin/shout"
 	}
 }
