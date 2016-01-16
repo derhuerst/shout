@@ -33,16 +33,16 @@
 	"dependencies": {
 		"coffee-script":			"^1.10.0",
 		"minimist":					"^1.2.0",
-		"config":					"^1.16.0",
-		"hapi":						"^10.3.0",
-		"inert":					"^3.0.2",
+		"config":					"^1.19.0",
+		"hapi":						"^10.5.0",
+		"inert":					"^3.2.0",
 		"callback-count":			"^0.2.0",
 		"shout-orm":				"derhuerst/shout-orm#master",
 		"uuid":						"^2.0.1",
-		"boom":						"^2.9.0",
-		"shortid":					"^2.2.2",
+		"boom":						"^2.10.1",
+		"shortid":					"^2.2.4",
 		"escape-html":				"^1.0.3",
-		"moment":					"^2.10.6"
+		"moment":					"^2.11.1"
 	},
 	"directories": {
 		"bin":			"./bin",
