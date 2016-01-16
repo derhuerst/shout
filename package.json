@@ -11,7 +11,7 @@
 	"homepage": "https://github.com/derhuerst/shout",
 	"repository": "git://github.com/derhuerst/shout.git",
 	"bugs": "https://github.com/derhuerst/shout/issues",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "./src/Server.coffee",
 	"bin": {
 		"shout":		"./bin/shout"
