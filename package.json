@@ -2,7 +2,7 @@
 	"name": "shout",
 	"description": "Let people send push notifications to a group of people.",
 	"url": "localhost:8000",
-	"license": "MIT",
+	"license": "ISC",
 	"author": {
 		"name": "Jannis R",
 		"email": "mail@jannisr.de",
