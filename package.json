@@ -34,7 +34,7 @@
 		"coffee-script":			"^1.10.0",
 		"minimist":					"^1.2.0",
 		"config":					"^1.19.0",
-		"hapi":						"^10.5.0",
+		"hapi":						"^18.1.0",
 		"inert":					"^3.2.0",
 		"callback-count":			"^0.2.0",
 		"shout-orm":				"derhuerst/shout-orm#master",
